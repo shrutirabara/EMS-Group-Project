@@ -1,3 +1,13 @@
+class Employee:
+    # Instance Data Members
+    def __init__(self, firstName, lastName, employeeId, dateOfEmployment, salary, department):
+        self.__firstName = firstName
+        self.__lastName = lastName
+        self.__employeeId = employeeId
+        self.__dateOfEmployment = dateOfEmployment
+        self.__salary = salary
+        self.__department = department
+
     # Getter Methods
 
     def getFirstName(self):
@@ -30,11 +40,13 @@
         self.__department = dInput
 
 
-Steven = Employee("steven", "chan", "23", "April 13th, 2023", "75000", "Web Development")
+# Steven = Employee("steven", "chan", "23", "April 13th, 2023", "75000", "Web Development")
 
-print(Steven.getFirstName(), Steven.getLastName(), Steven.getEmployeeId, Steven.getDateOfEmployment, Steven.getSalary, Steven.getDepartment)
+# print(Steven.getFirstName(), Steven.getLastName(), Steven.getEmployeeId(), Steven.getDateOfEmployment(), Steven.getSalary(), Steven.getDepartment())
 
-Sadie = Employee("sadie", "kc", "12" "June 5th, 2022", "65000", "Data Administrator")
-print(Sadie.getFirstName, Steven.getLastName(), Sadie.getEmployeeId, Sadie.getDateOfEmployment, Sadie.getSalary, Sadie.getDepartment)
+# Steven.setDateOfEmployment("April 14th, 2023")
+
+# Sadie = Employee("sadie", "kc", "12" "June 5th, 2022", "65000", "Data Administrator")
+# print(Sadie.getFirstName, Steven.getLastName(), Sadie.getEmployeeId, Sadie.getDateOfEmployment, Sadie.getSalary, Sadie.getDepartment)
 
     
