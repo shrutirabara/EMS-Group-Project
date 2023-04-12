@@ -1,3 +1,13 @@
+class Employee:
+    # Instance Data Members
+    def __init__(self, firstName, lastName, employeeId, dateOfEmployment, salary, department):
+        self.__firstName = firstName
+        self.__lastName = lastName
+        self.__employeeId = employeeId
+        self.__dateOfEmployment = dateOfEmployment
+        self.__salary = salary
+        self.__department = department
+        
     # Getter Methods
 
     def getFirstName(self):
