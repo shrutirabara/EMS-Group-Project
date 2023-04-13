@@ -31,12 +31,12 @@ class Department:
 
     # Setter Methods
 
-    def getDptName(self, nInput):
+    def setDptName(self, nInput):
         self.__dptName = nInput
 
-    def getDptBudget(self, bInput):
+    def setDptBudget(self, bInput):
         self.__dptBudget = bInput
 
-    def getDptNumber(self, pInput):
+    def setDptNumber(self, pInput):
         self.__dptNumber = pInput
 

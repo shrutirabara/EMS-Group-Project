@@ -6,13 +6,11 @@ from jsonConversions import loadJSONEmpObjects, loadJSONDptObjects, appendToJSON
 def main():
     print("\nWelcome to SOSS")
 
-    employees_list, emp_dictList = [], []
-    dpt_list, dpt_dictList = [], []
     file_name1 = "employee_data.json"
     file_name2 = "departments_data.json"
 
-    loadJSONEmpObjects(employees_list, emp_dictList, file_name1)
-    loadJSONDptObjects(dpt_dictList, dpt_dictList, file_name2)
+    employees_list, emp_dictList = loadJSONEmpObjects(file_name1)
+    dpt_list, dpt_dictList = loadJSONDptObjects(file_name2)
 
     ViewingMenu = True
     while ViewingMenu:
@@ -25,7 +23,7 @@ def main():
         print("7. Exit")
 
         choice = input("\nSelect # option: ")
-        choices = ["1", "2", "3", "4", "5","6"]
+        choices = ["1", "2", "3", "4", "5","6","7"]
 
         if choice not in choices:
             print("\nPlease choose from the following options")

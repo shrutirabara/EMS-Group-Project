@@ -1,7 +1,7 @@
 import os.path
 from Department import Department
 from errorHandling import enterValidNumber, enterValidString
-from jsonConversions import loadJSONDptObjects, appendToJSON
+from jsonConversions import loadJSONDptObjects, appendToDptJSON
 
 def listDepartment(departments):
     count = 1
@@ -38,7 +38,7 @@ def selectDepartment(departments):
     listDepartment(departments)
     while True:
         dpt_num = int(enterValidNumber("Select Department #: ")) - 1
-        if 0 < dpt_num < len(departments):
+        if 0 <= dpt_num < len(departments):
             return departments[dpt_num]
 
 def updateDepartments(departments):
@@ -50,7 +50,7 @@ def updateDepartments(departments):
     departments : list
         a list of Department objects
     """
-    name = enterValidString("\nEnter an ID to update: ")
+    name = enterValidString("\nEnter a Deparment Name to update: ")
 
     for dpt_obj in departments:
         if dpt_obj.getDptName() == name:
@@ -81,7 +81,7 @@ def updateDepartments(departments):
                 dpt.setDptName(enterValidString("\nNew Department name: "))
             case "2":
                 print(dpt.getDptBudget())
-                dpt.setDptBudget(enterValidString("\nNew Department budget: "))
+                dpt.setDptBudget(enterValidNumber("\nNew Department budget: "))
             case "3":
                 print(dpt.getDptNumber())
                 dpt.setDptNumber(enterValidNumber("\nNew Department Phone #: "))
@@ -129,4 +129,4 @@ def navigateDepartmentMenu(departments, dpt_dictList):
             pass
 
     for dpt in departments:
-        appendToJSON(file_name, dpt, dpt_dictList)
+        appendToDptJSON(file_name, dpt, dpt_dictList)
