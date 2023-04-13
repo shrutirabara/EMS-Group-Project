@@ -1,4 +1,23 @@
 class Employee:
+    """
+    A class used to represent an Employee
+    ...
+
+    Private Attributes
+    ----------
+    __firstName : str
+        a string representing the first name of an Employee
+    __lastName : str
+        a string reprsenting the last name of an Employee
+    __employeeId : int
+        a employee id that is unique and represents an Employee
+    __dateOfEmployment : str
+        a string that represents the date of employment
+    __salary : int
+        a int number representing Employee salary
+    __deparment : str
+        a string that represents the deparment
+    """
     # Instance Data Members
     def __init__(self, firstName, lastName, employeeId, dateOfEmployment, salary, department):
         self.__firstName = firstName
@@ -46,7 +65,5 @@ class Employee:
 
 # Steven.setDateOfEmployment("April 14th, 2023")
 
-# Sadie = Employee("sadie", "kc", "12" "June 5th, 2022", "65000", "Data Administrator")
-# print(Sadie.getFirstName, Steven.getLastName(), Sadie.getEmployeeId, Sadie.getDateOfEmployment, Sadie.getSalary, Sadie.getDepartment)
 
     

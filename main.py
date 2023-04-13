@@ -2,59 +2,75 @@ import json
 from Employee import Employee
 import os.path
 
-# Class Employee
-"""
-A class used to represent an Employee
 
-...
+# Error Handling Methods
 
-Private Attributes
-----------
-__firstName : str
-    a string representing the first name of an Employee
-__lastName : str
-    a string reprsenting the last name of an Employee
-__employeeId : int
-    a employee id that is unique and represents an Employee
-__dateOfEmployment : str
-    a string that represents the date of employment
-__salary : int
-    a int number representing Employee salary
-__deparment : str
-    a string that represents the deparment
-"""
+class InvalidStringException(Exception): pass
+def enterValidString(message):
+    """
+    a function that asks an user for a valid string that is alphabetic only,
+    will handle errors and keep prompting until valid
 
-def addEmployee(employees_list):
-    name = input("Enter employee name (first and last): ")
-    firstName, lastName = name.split()[0], name.split()[1]
-    firstName = firstName.capitalize()
-    lastName = lastName.capitalize()
-
-    employeeId = input("Enter the employee ID: ")
-    dateOfEmployment = input("Enter the date of employement: ")
-    salary = input("Enter employee salary: ")
+    Parameters
+    ----------
+    message : str
+        a message to prompt the user for anything 
+    """
     
-    department = input("Enter department: ")
+    StringisInvalid = True
+    res = ""
+    while StringisInvalid:
+        try:
+            res = input(message)
+            
+            if all(x.isalpha() or x.isspace() for x in res):
+                StringisInvalid = False
+            else:
+                print("Bad entry detected!")
+                raise InvalidStringException
+            
+        except InvalidStringException:
+            print("Please enter letters only")
+    return res
 
-    emp = Employee(firstName, lastName, employeeId, dateOfEmployment, salary, department)
+def enterValidNumber(message):
+    """
+    a function that asks an user for a valid string that is numeric only,
+    will handle errors and keep prompting until valid
+    ...
 
-    print(emp.getFirstName(), emp.getLastName(), emp.getEmployeeId(), emp.getDateOfEmployment(), emp.getSalary(), emp.getDepartment())
+    Parameters
+    ----------
+    message : str
+        a message to prompt the user for anything 
+    """
+    
+    StringisInvalid = True
+    res = ""
+    while StringisInvalid:
+        try:
+            res = input(message)
+            
+            if res.isnumeric():
+                StringisInvalid = False
+            else:
+                print("Bad entry detected!")
+                raise InvalidStringException
+            
+        except InvalidStringException:
+            print("Please enter numbers only")
+    return res
 
-    employees_list.append(emp)
+# JSON Custom Serialization and Deserialization Methods
 
-def listEmployee(employees_list):
-    for employee in employees_list:
-        print(employee.getFirstName(), employee.getLastName(), employee.getEmployeeId(), employee.getDateOfEmployment(), employee.getSalary(), employee.getDepartment())
-
-
-def append_to_file(fileName, employee, dictList):
+def appendToJSON(fileName, employee, dictList):
     emp_dict = {
         "first name": employee.getFirstName(),
         "last name": employee.getLastName(),
         "id": employee.getEmployeeId(),
         "doe": employee.getDateOfEmployment(),
         "salary": employee.getSalary(),
-        "deparment": employee.getDepartment()
+        "department": employee.getDepartment()
          }
     
     dictList.append(emp_dict)
@@ -64,42 +80,143 @@ def append_to_file(fileName, employee, dictList):
     with open(fileName, "w") as f:
         f.write(json_obj)
 
+def loadJSONObjects(empl_list, emp_dictList, file_name):
+    """
+    a function that opens a JSON file and loads it into a list, populating a list with dictionaries
+    each dictionary is a representation of a Employee Class Object
+    we repopulate employees_list by recreating class objects in memory and appending to the list
+    ...
 
-def main():
-    
-    employees_list = []
-    emp_dictList = []
-    
-    file_name = "employee_data.json"
+    Parameters
+    ----------
+    emp_list : str
+        an empty list of Employee objects, which we will repopulate
+    emp_dictList : str
+        a list of dictionaries, which we will load our JSON file array into
+    file_name : str
+        a JSON file name 
+    """
     with open(file_name, "r") as f:
         emp_dictList = json.load(f)
 
-    
-    while True:
-        print("1. Add New Employee")
-        print("2. Update Employee")
-        print("3. Remove Employee")
-        print("4. List All Employees")
+    for emp in emp_dictList:
+        recreateClassObj = Employee(
+            emp["first name"],
+            emp["last name"],
+            emp["id"], emp["doe"],
+            emp["salary"],
+            emp["department"]
+            )
+        # append employee object to empl_list
+        empl_list.append(recreateClassObj)
+
+
+# Menu Functionality Methods
+
+def listEmployee(employees_list):
+    for employee in employees_list:
+        print("")
+        print(employee.getFirstName(), employee.getLastName(), employee.getEmployeeId(), employee.getDateOfEmployment(), employee.getSalary(), employee.getDepartment())
+
+def addEmployee(employees_list):
+    # Asking for new Employee data
+    name = enterValidString("Enter employee name (first and last): ")
+    firstName = name.split()[0].capitalize()
+    lastName = name.split()[1].capitalize()
+    employeeId = enterValidNumber("Enter the employee ID: ")
+    dateOfEmployment = enterValidString("Enter the date of employement: ")
+    salary = enterValidNumber("Enter employee salary: ")
+    department = enterValidString("Enter department: ")
+
+    # Creating the Employee Object
+    emp = Employee(firstName, lastName, employeeId, dateOfEmployment, salary, department)
+
+    # Appending the Object to our Employees List
+    employees_list.append(emp)
+
+def updateEmployee(employees_list):
+    id = enterValidNumber("\nEnter an ID to update: ")
+
+    employeeFound = False
+    for emp in employees_list:
+        if emp.getEmployeeId() == id:
+            print(f"\nID Match! Employee Found: {emp.getFirstName()} {emp.getLastName()}\n")
+            employeeFound = True
+        else:
+            pass
+
+        updatingData = True
+        while employeeFound and updatingData:
+            print("Which information would you like to change?\n")
+            print("1. First Name")
+            print("2. Last Name")
+            print("3. ID")
+            print("4. Date of Employment")
+            print("5. Salary")
+            print("6. Department")
+            print("7. Done")
+
+            choice = input("\nSelect # option: ")
+            choices = ["1","2","3","4","5","6","7"]
+
+            if choice not in choices:
+                print("\nPlease choose from the following options")
+                continue
+
+            match choice:
+                case "1":
+                    emp.setFirstName(enterValidString("\nNew first name: "))
+                case "2":
+                    emp.setLastName(enterValidString("\nNew last name: "))
+                case "3":
+                    emp.setEmployeeId(enterValidNumber("\nNew ID: "))
+                case "4":
+                    emp.setDateOfEmployment(enterValidString("\nNew Date of Employment: "))
+                case "5":
+                    emp.setSalary(enterValidNumber("\nNew Salary: "))
+                case "6":
+                    emp.setDepartment(enterValidString("\nNew Department: "))
+                case "7":
+                    updatingData = False
+
+                    
+
+def main():
+    print("\nWelcome to SOSS")
+
+    employees_list, emp_dictList = [], []
+    file_name = "employee_data.json"
+
+    loadJSONObjects(employees_list, emp_dictList, file_name)
+
+    ViewingMenu = True
+    while ViewingMenu:
+        print("\n1. List All Employees")
+        print("2. Add New Employee")
+        print("3. Update Employee")
+        print("4. Remove Employee")
         print("5. Exit")
 
-        choice = input("Select an option: ")
+        choice = input("\nSelect # option: ")
+        choices = ["1","2","3","4","5"]
 
-        if choice == "1":
-            addEmployee(employees_list)
-            
-        elif choice == "2":
-            print("2. Update Employee")
+        if choice not in choices:
+            print("\nPlease choose from the following options")
+            continue
 
-        elif choice == "3":
-            print("3. Remove Employee")
-        elif choice == "4":
-            listEmployee(employees_list)
-        elif choice == "5":
-            print("Exiting menu")
-            break
+        match choice:
+            case "1":
+                listEmployee(employees_list)
+            case "2":
+                addEmployee(employees_list)
+            case "3":
+                updateEmployee(employees_list)
+            case "4":
+                print("Remove Employee")
+                 #remove employee function
+            case "5":
+                ViewingMenu = False
 
-        else:
-            print("Invalid choice")
 
     file_name = "employee_data.json"
     if not os.path.isfile(file_name):
@@ -108,8 +225,7 @@ def main():
         
     
     for emp in employees_list:
-        append_to_file(file_name, emp, emp_dictList)
+        appendToJSON(file_name, emp, emp_dictList)
         
-    
 if __name__ == "__main__":
     main()
