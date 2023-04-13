@@ -1,5 +1,5 @@
-import json
-
+from errorHandling import enterValidNumber
+from listAllEmployees import listEmployee
 def removeEmployee(employees_list):
     
     while True:
@@ -13,16 +13,17 @@ def removeEmployee(employees_list):
                         
                         print("Successfully deleted")
                         listEmployee(employees_list)
-                  
+                        again = input("Would you like to continue? Y or N: ").lower()
+                        if again == "y":
+                            continue
+                        elif again == "n":
+                            break
+                        else:
+                            print("That is not a valid answer")
+                            continue
+                break  
             elif check == "n":
-                again = input("Would you like to continue? Y or N: ").lower()
-                if again == "y":
-                    continue
-                elif again == "n":
-                    break
-                else:
-                    print("That is not a valid answer")
-                    continue
+                continue
             else:
                 print("That is not a valid answer")
                 continue
