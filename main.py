@@ -115,7 +115,7 @@ def loadJSONObjects(empl_list, emp_dictList, file_name):
 
 def listEmployee(employees_list):
     for employee in employees_list:
-        print("Name:", employee.getFirstName(), employee.getLastName(), "| ID", employee.getEmployeeId(), "| Date of Employment:", employee.getDateOfEmployment(), "| Salary:", employee.getSalary(), "| Department:", employee.getDepartment())
+        print("Name:", employee.getFirstName(), employee.getLastName(), "| ID:", employee.getEmployeeId(), "| Date of Employment:", employee.getDateOfEmployment(), "| Salary:", employee.getSalary(), "| Department:", employee.getDepartment())
 
 def addEmployee(employees_list):
     # Asking for new Employee data
