@@ -128,3 +128,7 @@ def removeEmployee(employees_list):
         except ValueError:
             print("that is not a valid ID")
             continue
+
+def listIds(employees_list):
+    ids = [(emp.getFirstName(), emp.getEmployeeId()) for emp in employees_list]
+    print(f"\nHere is a list of all our employee IDs: \n{ids}")

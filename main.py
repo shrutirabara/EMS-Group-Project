@@ -1,5 +1,5 @@
 import os.path
-from employeeFunctions import listEmployee, addEmployee, updateEmployee, removeEmployee
+from employeeFunctions import listEmployee, addEmployee, updateEmployee, removeEmployee, listIds
 from jsonConversions import loadJSONObjects, appendToJSON
 
 def main():
@@ -16,10 +16,11 @@ def main():
         print("2. Add New Employee")
         print("3. Update Employee")
         print("4. Remove Employee")
+        print("5. List IDs")
         print("5. Exit")
 
         choice = input("\nSelect # option: ")
-        choices = ["1", "2", "3", "4", "5"]
+        choices = ["1", "2", "3", "4", "5","6"]
 
         if choice not in choices:
             print("\nPlease choose from the following options")
@@ -35,7 +36,11 @@ def main():
             case "4":
                 removeEmployee(employees_list)
             case "5":
+                listIds(employees_list)
+            case "6":
                 ViewingMenu = False
+
+
 
     file_name = "employee_data.json"
     if not os.path.isfile(file_name):
