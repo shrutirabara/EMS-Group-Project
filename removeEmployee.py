@@ -22,7 +22,7 @@ def removeEmployee(employees_list):
                             print("That is not a valid answer")
                             continue
                 break  
-            elif check == "n":
+            elif check == "n": 
                 continue
             else:
                 print("That is not a valid answer")
