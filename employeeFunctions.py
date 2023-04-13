@@ -53,17 +53,16 @@ def updateEmployee(employees_list):
     """
     id = enterValidNumber("\nEnter an ID to update: ")
 
-    employeeFound = False
-    for emp in employees_list:
-        if emp.getEmployeeId() == id:
+    for emp_obj in employees_list:
+        if emp_obj.getEmployeeId() == id:
             print(
-                f"\nID Match! Employee Found: {emp.getFirstName()} {emp.getLastName()}\n")
-            employeeFound = True
+                f"\nID Match! Employee Found: {emp_obj.getFirstName()} {emp_obj.getLastName()}\n")
+            emp = emp_obj
         else:
             pass
 
     updatingData = True
-    while employeeFound and updatingData:
+    while updatingData:
         print("Which information would you like to change?\n")
         print("1. First Name")
         print("2. Last Name")
@@ -77,21 +76,27 @@ def updateEmployee(employees_list):
         choices = ["1", "2", "3", "4", "5", "6", "7"]
 
         if choice not in choices:
-            print("\nPlease choose from the following options")
+            print("\nPlease choose from the following options\n")
             continue
 
         match choice:
             case "1":
+                print(emp.getFirstName())
                 emp.setFirstName(enterValidString("\nNew first name: "))
             case "2":
+                print(emp.getLastName())
                 emp.setLastName(enterValidString("\nNew last name: "))
             case "3":
+                print(emp.getEmployeeId())
                 emp.setEmployeeId(enterValidNumber("\nNew ID: "))
             case "4":
+                print(emp.getDateOfEmployment())
                 emp.setDateOfEmployment(input("\nNew Date of Employment: "))
             case "5":
+                print(emp.getSalary())
                 emp.setSalary(enterValidNumber("\nNew Salary: "))
             case "6":
+                print(emp.getDepartment())
                 emp.setDepartment(enterValidString("\nNew Department: "))
             case "7":
                 updatingData = False

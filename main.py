@@ -1,6 +1,6 @@
 import os.path
 from employeeFunctions import listEmployee, addEmployee, updateEmployee, removeEmployee
-from jsonConvertions import loadJSONObjects, appendToJSON
+from jsonConversions import loadJSONObjects, appendToJSON
 
 def main():
     print("\nWelcome to SOSS")
