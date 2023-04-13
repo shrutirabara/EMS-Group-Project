@@ -1,12 +1,22 @@
 from errorHandling import enterValidNumber, enterValidString
 
+
 def updateEmployee(employees_list):
+    """
+    a function that updates an employee object from the employees_list based on an attribute
+
+    Parameters
+    ----------
+    employees_list : list
+        a list of employees objects
+    """
     id = enterValidNumber("\nEnter an ID to update: ")
 
     employeeFound = False
     for emp in employees_list:
         if emp.getEmployeeId() == id:
-            print(f"\nID Match! Employee Found: {emp.getFirstName()} {emp.getLastName()}\n")
+            print(
+                f"\nID Match! Employee Found: {emp.getFirstName()} {emp.getLastName()}\n")
             employeeFound = True
         else:
             pass
@@ -23,7 +33,7 @@ def updateEmployee(employees_list):
         print("7. Done")
 
         choice = input("\nSelect # option: ")
-        choices = ["1","2","3","4","5","6","7"]
+        choices = ["1", "2", "3", "4", "5", "6", "7"]
 
         if choice not in choices:
             print("\nPlease choose from the following options")
@@ -37,7 +47,8 @@ def updateEmployee(employees_list):
             case "3":
                 emp.setEmployeeId(enterValidNumber("\nNew ID: "))
             case "4":
-                emp.setDateOfEmployment(enterValidString("\nNew Date of Employment: "))
+                emp.setDateOfEmployment(
+                    enterValidString("\nNew Date of Employment: "))
             case "5":
                 emp.setSalary(enterValidNumber("\nNew Salary: "))
             case "6":

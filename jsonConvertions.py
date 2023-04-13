@@ -1,6 +1,7 @@
 import json
 from Employee import Employee
 
+
 def appendToJSON(fileName, employee, dictList):
     emp_dict = {
         "first name": employee.getFirstName(),
@@ -9,14 +10,15 @@ def appendToJSON(fileName, employee, dictList):
         "doe": employee.getDateOfEmployment(),
         "salary": employee.getSalary(),
         "department": employee.getDepartment()
-         }
-    
+    }
+
     dictList.append(emp_dict)
 
     json_obj = json.dumps(dictList)
 
     with open(fileName, "w") as f:
         f.write(json_obj)
+
 
 def loadJSONObjects(empl_list, emp_dictList, file_name):
     """
@@ -44,6 +46,6 @@ def loadJSONObjects(empl_list, emp_dictList, file_name):
             emp["id"], emp["doe"],
             emp["salary"],
             emp["department"]
-            )
+        )
         # append employee object to empl_list
         empl_list.append(recreateClassObj)
