@@ -1,14 +1,18 @@
 import os.path
 from employeeFunctions import listEmployee, addEmployee, updateEmployee, removeEmployee, listIds
-from jsonConversions import loadJSONObjects, appendToJSON
+from departmentFunctions import navigateDepartmentMenu
+from jsonConversions import loadJSONEmpObjects, loadJSONDptObjects, appendToJSON
 
 def main():
     print("\nWelcome to SOSS")
 
     employees_list, emp_dictList = [], []
-    file_name = "employee_data.json"
+    dpt_list, dpt_dictList = [], []
+    file_name1 = "employee_data.json"
+    file_name2 = "departments_data.json"
 
-    loadJSONObjects(employees_list, emp_dictList, file_name)
+    loadJSONEmpObjects(employees_list, emp_dictList, file_name1)
+    loadJSONDptObjects(dpt_dictList, dpt_dictList, file_name2)
 
     ViewingMenu = True
     while ViewingMenu:
@@ -17,7 +21,8 @@ def main():
         print("3. Update Employee")
         print("4. Remove Employee")
         print("5. List IDs")
-        print("5. Exit")
+        print("6. View and Update Departments")
+        print("7. Exit")
 
         choice = input("\nSelect # option: ")
         choices = ["1", "2", "3", "4", "5","6"]
@@ -30,14 +35,16 @@ def main():
             case "1":
                 listEmployee(employees_list)
             case "2":
-                addEmployee(employees_list)
+                addEmployee(employees_list, dpt_list)
             case "3":
-                updateEmployee(employees_list)
+                updateEmployee(employees_list, dpt_list)
             case "4":
                 removeEmployee(employees_list)
             case "5":
                 listIds(employees_list)
             case "6":
+                navigateDepartmentMenu(dpt_list, dpt_dictList)
+            case "7":
                 ViewingMenu = False
 
 
@@ -48,7 +55,7 @@ def main():
             pass
 
     for emp in employees_list:
-        appendToJSON(file_name, emp, emp_dictList)
+        appendToJSON(file_name1, emp, emp_dictList)
 
 
 if __name__ == "__main__":

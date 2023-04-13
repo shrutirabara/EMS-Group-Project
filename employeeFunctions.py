@@ -1,5 +1,6 @@
 from Employee import Employee
 from errorHandling import enterValidNumber, enterValidString
+from departmentFunctions import selectDepartment
 
 def listEmployee(employees_list):
     """
@@ -14,7 +15,7 @@ def listEmployee(employees_list):
         print("Name:", employee.getFirstName(), employee.getLastName(), "| ID:", employee.getEmployeeId(), "| Date of Employment:", employee.getDateOfEmployment(), "| Salary:", employee.getSalary(), "| Department:", employee.getDepartment())
 
 
-def addEmployee(employees_list):
+def addEmployee(employees_list, departments):
     """
     a function that adds an employee object to appends it to the employees_list
 
@@ -30,17 +31,18 @@ def addEmployee(employees_list):
     employeeId = enterValidNumber("Enter the employee ID: ")
     dateOfEmployment = input("Enter the date of employement: ")
     salary = enterValidNumber("Enter employee salary: ")
-    department = enterValidString("Enter department: ")
+
+    dpt_obj = selectDepartment(departments)
 
     # Creating the Employee Object
     emp = Employee(firstName, lastName, employeeId,
-                   dateOfEmployment, salary, department)
+                   dateOfEmployment, salary, dpt_obj.getDptName())
 
     # Appending the Object to our Employees List
     employees_list.append(emp)
 
 
-def updateEmployee(employees_list):
+def updateEmployee(employees_list, departments):
     """
     a function that updates an employee object from the employees_list based on an attribute
 
@@ -95,7 +97,8 @@ def updateEmployee(employees_list):
                 emp.setSalary(enterValidNumber("\nNew Salary: "))
             case "6":
                 print(emp.getDepartment())
-                emp.setDepartment(enterValidString("\nNew Department: "))
+                dpt_obj = selectDepartment(departments)
+                emp.setDepartment(dpt_obj.getDptName())
             case "7":
                 updatingData = False
 
