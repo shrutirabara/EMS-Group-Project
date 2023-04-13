@@ -14,6 +14,7 @@ Our team utilized various things to complete this program including:
 Python
 
 ### Authors and acknowledgments:
+- [Shruti Rabara](https://github.com/shrutirabara)
 - [Steven Chan](https://github.com/newdevon)
 - [Omar Singer](https://github.com/omz-singer)
 - [Sadichhya KC](https://github.com/sadiekc)
