@@ -1,36 +1,46 @@
-from removeEmployee import EmployeeID
+from errorHandling import enterValidNumber, enterValidString
 
+def updateEmployee(employees_list):
+    id = enterValidNumber("\nEnter an ID to update: ")
 
-def update_employee():
-    print("Enter employee ID to update:")
-    emp_id = input()
-    emp = EmployeeID(emp_id)
-    if emp is not None:
-        print("Which attribute do you want to update?")
+    employeeFound = False
+    for emp in employees_list:
+        if emp.getEmployeeId() == id:
+            print(f"\nID Match! Employee Found: {emp.getFirstName()} {emp.getLastName()}\n")
+            employeeFound = True
+        else:
+            pass
+
+    updatingData = True
+    while employeeFound and updatingData:
+        print("Which information would you like to change?\n")
         print("1. First Name")
         print("2. Last Name")
-        print("3. Department")
-        print("4. Salary")
-        print("5. Date of Employment")
-        choice = input()
-        if choice == "1":
-            print("Enter new first name: ")
-            emp.first_name = input()
-        elif choice == "2":
-            print("Enter new last name: ")
-            emp.last_name = input()
-        elif choice == "3":
-            print("Enter new department: ")
-            emp.department = input()
-        elif choice == "4":
-            print("Enter new salary: ")
-            emp.salary = input()
-        elif choice == "5":
-            print("Enter new date of employment: ")
-            emp.date_of_employment = input()
-        else:
-            print("Invalid choice.")
-            return
-        print(f"Employee with ID {emp_id} has been updated.")
-    else:
-        print(f"No employee found with ID {emp_id}.")
+        print("3. ID")
+        print("4. Date of Employment")
+        print("5. Salary")
+        print("6. Department")
+        print("7. Done")
+
+        choice = input("\nSelect # option: ")
+        choices = ["1","2","3","4","5","6","7"]
+
+        if choice not in choices:
+            print("\nPlease choose from the following options")
+            continue
+
+        match choice:
+            case "1":
+                emp.setFirstName(enterValidString("\nNew first name: "))
+            case "2":
+                emp.setLastName(enterValidString("\nNew last name: "))
+            case "3":
+                emp.setEmployeeId(enterValidNumber("\nNew ID: "))
+            case "4":
+                emp.setDateOfEmployment(enterValidString("\nNew Date of Employment: "))
+            case "5":
+                emp.setSalary(enterValidNumber("\nNew Salary: "))
+            case "6":
+                emp.setDepartment(enterValidString("\nNew Department: "))
+            case "7":
+                updatingData = False
