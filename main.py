@@ -1,7 +1,7 @@
 import json
 from Employee import Employee
 import os.path
-
+#from removeEmployee import removeEmployee
 
 # Error Handling Methods
 
@@ -178,6 +178,9 @@ def updateEmployee(employees_list):
             case "7":
                 updatingData = False
 
+
+
+
                     
 
 def main():
@@ -212,6 +215,7 @@ def main():
                 updateEmployee(employees_list)
             case "4":
                 print("Remove Employee")
+                removeEmployee(employees_list)
                  #remove employee function
             case "5":
                 ViewingMenu = False
