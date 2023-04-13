@@ -3,6 +3,20 @@ from Employee import Employee
 
 
 def appendToJSON(fileName, employee, dictList):
+    """
+    a function that appends each attributes of an employee to an empty dictionary. The dictionary is then added to 
+    the JSON file using a json object
+    ...
+
+    Parameters
+    ----------
+    emp_list : str
+        an empty list of Employee objects, which we will repopulate
+    emp_dictList : str
+        a list of dictionaries, which we will load our JSON file array into
+    file_name : str
+        a JSON file name 
+    """
     emp_dict = {
         "first name": employee.getFirstName(),
         "last name": employee.getLastName(),

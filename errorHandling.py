@@ -1,4 +1,3 @@
-# Error Handling Methods
 class InvalidStringException(Exception):
     pass
 
@@ -58,4 +57,3 @@ def enterValidNumber(message):
         except InvalidStringException:
             print("Please enter numbers only")
     return res
-

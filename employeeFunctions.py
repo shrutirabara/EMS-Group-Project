@@ -1,6 +1,7 @@
 from Employee import Employee
 from errorHandling import enterValidNumber, enterValidString
 
+
 def listEmployee(employees_list):
     """
     a function that lists all attributes from each employee object from the employees_list
@@ -11,7 +12,8 @@ def listEmployee(employees_list):
         a list of employees objects
     """
     for employee in employees_list:
-        print("Name:", employee.getFirstName(), employee.getLastName(), "| ID:", employee.getEmployeeId(), "| Date of Employment:", employee.getDateOfEmployment(), "| Salary:", employee.getSalary(), "| Department:", employee.getDepartment())
+        print("Name:", employee.getFirstName(), employee.getLastName(), "| ID:", employee.getEmployeeId(), "| Date of Employment:",
+              employee.getDateOfEmployment(), "| Salary:", employee.getSalary(), "| Department:", employee.getDepartment())
 
 
 def addEmployee(employees_list):
@@ -99,20 +101,23 @@ def updateEmployee(employees_list):
             case "7":
                 updatingData = False
 
+
 def removeEmployee(employees_list):
-    
+
     while True:
         try:
-            RemoveID = enterValidNumber("Please enter the Employee ID you would like to remove: ")
-            check = input("Are you sure you want to remove employee? Y or N: ").lower()
+            RemoveID = enterValidNumber(
+                "Please enter the Employee ID you would like to remove: ")
+            check = input(
+                "Are you sure you want to remove employee? Y or N: ").lower()
             if check == "y":
                 for employee in employees_list:
                     if RemoveID == employee.getEmployeeId():
                         employees_list.remove(employee)
-                        
+
                         print("Successfully deleted")
                         listEmployee(employees_list)
-                  
+
             elif check == "n":
                 again = input("Would you like to continue? Y or N: ").lower()
                 if again == "y":
@@ -128,6 +133,7 @@ def removeEmployee(employees_list):
         except ValueError:
             print("that is not a valid ID")
             continue
+
 
 def listIds(employees_list):
     ids = [(emp.getFirstName(), emp.getEmployeeId()) for emp in employees_list]

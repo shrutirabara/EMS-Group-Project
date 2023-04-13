@@ -2,6 +2,7 @@ import os.path
 from employeeFunctions import listEmployee, addEmployee, updateEmployee, removeEmployee, listIds
 from jsonConversions import loadJSONObjects, appendToJSON
 
+
 def main():
     print("\nWelcome to SOSS")
 
@@ -17,10 +18,10 @@ def main():
         print("3. Update Employee")
         print("4. Remove Employee")
         print("5. List IDs")
-        print("5. Exit")
+        print("6. Exit")
 
         choice = input("\nSelect # option: ")
-        choices = ["1", "2", "3", "4", "5","6"]
+        choices = ["1", "2", "3", "4", "5", "6"]
 
         if choice not in choices:
             print("\nPlease choose from the following options")
@@ -39,8 +40,6 @@ def main():
                 listIds(employees_list)
             case "6":
                 ViewingMenu = False
-
-
 
     file_name = "employee_data.json"
     if not os.path.isfile(file_name):

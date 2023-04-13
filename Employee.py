@@ -68,10 +68,3 @@ class Employee:
 
     def setDepartment(self, dInput):
         self.__department = dInput
-
-
-# Steven = Employee("steven", "chan", "23", "April 13th, 2023", "75000", "Web Development")
-
-# print(Steven.getFirstName(), Steven.getLastName(), Steven.getEmployeeId(), Steven.getDateOfEmployment(), Steven.getSalary(), Steven.getDepartment())
-
-# Steven.setDateOfEmployment("April 14th, 2023")
