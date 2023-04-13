@@ -1,9 +1,5 @@
 import os.path
-from Employee import Employee
-from addNewEmployee import addEmployee
-from errorHandling import enterValidNumber, enterValidString
-from listAllEmployees import listEmployee
-from updateEmployee import updateEmployee
+from employeeFunctions import listEmployee, addEmployee, updateEmployee, removeEmployee
 from jsonConvertions import loadJSONObjects, appendToJSON
 
 def main():
