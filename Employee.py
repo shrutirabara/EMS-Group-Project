@@ -19,6 +19,7 @@ class Employee:
         a string that represents the deparment
     """
     # Instance Data Members
+
     def __init__(self, firstName, lastName, employeeId, dateOfEmployment, salary, department):
         self.__firstName = firstName
         self.__lastName = lastName
@@ -31,14 +32,19 @@ class Employee:
 
     def getFirstName(self):
         return self.__firstName
+
     def getLastName(self):
         return self.__lastName
+
     def getEmployeeId(self):
         return self.__employeeId
+
     def getDateOfEmployment(self):
         return self.__dateOfEmployment
+
     def getSalary(self):
         return self.__salary
+
     def getDepartment(self):
         return self.__department
 
@@ -47,14 +53,19 @@ class Employee:
     def setFirstName(self, fnInput):
         self.__firstName = fnInput
         print(f"First Name set to '{fnInput}'")
+
     def setLastName(self, lnInput):
         self.__lastName = lnInput
+
     def setEmployeeId(self, idInput):
         self.__employeeId = idInput
+
     def setDateOfEmployment(self, doeInput):
         self.__dateOfEmployment = doeInput
+
     def setSalary(self, salaryInput):
         self.__salary = salaryInput
+
     def setDepartment(self, dInput):
         self.__department = dInput
 
@@ -64,6 +75,3 @@ class Employee:
 # print(Steven.getFirstName(), Steven.getLastName(), Steven.getEmployeeId(), Steven.getDateOfEmployment(), Steven.getSalary(), Steven.getDepartment())
 
 # Steven.setDateOfEmployment("April 14th, 2023")
-
-
-    
