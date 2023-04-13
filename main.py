@@ -6,7 +6,6 @@ from listAllEmployees import listEmployee
 from updateEmployee import updateEmployee
 from jsonConvertions import loadJSONObjects, appendToJSON
 
-
 def main():
     print("\nWelcome to SOSS")
 
@@ -38,8 +37,7 @@ def main():
             case "3":
                 updateEmployee(employees_list)
             case "4":
-                print("Remove Employee")
-                # remove employee function
+                removeEmployee(employees_list)
             case "5":
                 ViewingMenu = False
 
