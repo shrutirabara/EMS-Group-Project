@@ -60,13 +60,13 @@ def loadJSONEmpObjects(file_name):
 
 
 def appendToDptJSON(fileName, dpt, dpt_dictList):
-    emp_dict = {
+    dpt_dict = {
         "name": dpt.getDptName(),
         "budget": dpt.getDptBudget(),
         "phone": dpt.getDptNumber()
     }
 
-    dpt_dictList.append(emp_dict)
+    dpt_dictList.append(dpt_dict)
 
     json_obj = json.dumps(dpt_dictList)
 
@@ -106,7 +106,4 @@ def loadJSONDptObjects(file_name):
         # append department object to departments
         departments.append(recreateClassObj)
     
-    # print((departments, dpt_dictList))
-    # print(departments)
-    # print(dpt_dictList)
     return (departments, dpt_dictList)
