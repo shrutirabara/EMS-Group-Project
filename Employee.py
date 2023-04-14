@@ -17,6 +17,7 @@ class Employee:
     __deparment : str
         a string that represents the deparment
     """
+    
     # Instance Data Members
 
     def __init__(self, firstName, lastName, employeeId, dateOfEmployment, salary, department):

@@ -1,1 +1,42 @@
-[{"name": "Human Resources", "budget": "500000", "phone": "2123334569"}, {"name": "Data Mining", "budget": "899000", "phone": "5456789123"}, {"name": "QA", "budget": "250000", "phone": "4123523321"}, {"name": "Accounting", "budget": "150000", "phone": "6032233698"}, {"name": "Marketing", "budget": "2000000", "phone": "5153268784"}, {"name": "Customer Service", "budget": "50000", "phone": "8008885643"}]
+[
+    {
+        "name": "Human Resources",
+        "budget": "500000",
+        "phone": "2123334569"
+    },
+    {
+        "name": "Data Mining",
+        "budget": "899000",
+        "phone": "5456789123"
+    },
+    {
+        "name": "QA",
+        "budget": "250000",
+        "phone": "4123523321"
+    },
+    {
+        "name": "Accounting",
+        "budget": "150000",
+        "phone": "6032233698"
+    },
+    {
+        "name": "Marketing",
+        "budget": "2000000",
+        "phone": "5153268784"
+    },
+    {
+        "name": "Customer Service",
+        "budget": "50000",
+        "phone": "8008885643"
+    },
+    {
+        "name": "IT",
+        "budget": "540000",
+        "phone": "3236598899"
+    },
+    {
+        "name": "Research and Development",
+        "budget": "750000",
+        "phone": "6468975699"
+    }
+]
