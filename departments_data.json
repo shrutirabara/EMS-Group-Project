@@ -28,5 +28,15 @@
         "name": "Customer Service",
         "budget": "50000",
         "phone": "8008885643"
+    },
+    {
+        "name": "IT",
+        "budget": "540000",
+        "phone": "3236598899"
+    },
+    {
+        "name": "Research and Development",
+        "budget": "750000",
+        "phone": "6468975699"
     }
 ]

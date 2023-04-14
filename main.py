@@ -9,13 +9,11 @@ def main():
 
     # Loading in our JSON Data
     file_name1, file_name2 = "employee_data.json", "departments_data.json"
-    employees_list, emp_dictList = [], []
+    employees_list, emp_dictList, idList = [], [], []
     dpt_list, dpt_dictList = [], []
     loadJSONEmpObjects(employees_list, emp_dictList, file_name1)
     loadJSONDptObjects(dpt_list, dpt_dictList, file_name2)
-    idList = []
     repopulateIdList(idList, employees_list)
-    print(idList)
 
     ViewingMenu = True
     while ViewingMenu:
