@@ -1,4 +1,4 @@
-import time
+import time, random
 from Employee import Employee
 from errorHandling import enterValidNumber, enterValidString
 from departmentFunctions import selectDepartment
@@ -15,8 +15,15 @@ def listEmployee(employees_list):
     for employee in employees_list:
         print("Name:", employee.getFirstName(), employee.getLastName(), "| ID:", employee.getEmployeeId(), "| Date of Employment:", employee.getDateOfEmployment(), "| Salary:", employee.getSalary(), "| Department:", employee.getDepartment())
 
+def generateUniqueId(idList):
+    id = random.randint(10000, 99999)
+    if id in idList:
+        while id in idList:
+            id = random.randint(10000, 99999)
+    idList.append(id)
+    return id
 
-def addEmployee(employees_list, departments):
+def addEmployee(employees_list, departments, idList):
     """
     a function that adds an employee object to appends it to the employees_list
 
@@ -29,7 +36,7 @@ def addEmployee(employees_list, departments):
     name = enterValidString("Enter employee name (first and last): ")
     firstName = name.split()[0].capitalize()
     lastName = name.split()[1].capitalize()
-    employeeId = enterValidNumber("Enter the employee ID: ")
+    employeeId = generateUniqueId(idList)
     dateOfEmployment = input("Enter the date of employement: ")
     salary = enterValidNumber("Enter employee salary: ")
 
@@ -52,7 +59,7 @@ def updateEmployee(employees_list, departments):
     employees_list : list
         a list of employees objects
     """
-    id = enterValidNumber("\nEnter an ID to update: ")
+    id = int(enterValidNumber("\nEnter an ID to update: "))
 
     idFound = False
     for emp_obj in employees_list:
@@ -74,14 +81,13 @@ def updateEmployee(employees_list, departments):
         print("Which information would you like to change?\n")
         print("1. First Name")
         print("2. Last Name")
-        print("3. ID")
-        print("4. Date of Employment")
-        print("5. Salary")
-        print("6. Department")
-        print("7. Done")
+        print("3. Date of Employment")
+        print("4. Salary")
+        print("5. Department")
+        print("6. Done")
 
         choice = input("\nSelect # option: ")
-        choices = ["1", "2", "3", "4", "5", "6", "7"]
+        choices = ["1", "2", "3", "4", "5", "6"]
 
         if choice not in choices:
             print("\nPlease choose from the following options\n")
@@ -95,27 +101,24 @@ def updateEmployee(employees_list, departments):
                 print(emp.getLastName())
                 emp.setLastName(enterValidString("\nNew last name: "))
             case "3":
-                print(emp.getEmployeeId())
-                emp.setEmployeeId(enterValidNumber("\nNew ID: "))
-            case "4":
                 print(emp.getDateOfEmployment())
                 emp.setDateOfEmployment(input("\nNew Date of Employment: "))
-            case "5":
+            case "4":
                 print(emp.getSalary())
                 emp.setSalary(enterValidNumber("\nNew Salary: "))
-            case "6":
+            case "5":
                 print(emp.getDepartment())
                 dpt_obj = selectDepartment(departments)
                 emp.setDepartment(dpt_obj.getDptName())
-            case "7":
+            case "6":
                 updatingData = False
 
 def removeEmployee(employees_list):
     
     while True:
         try:
-            RemoveID = enterValidNumber("Please enter the Employee ID you would like to remove: ")
-            check = input("Are you sure you want to remove employee? Y or N: ").lower()
+            RemoveID = int(enterValidNumber("Please enter the Employee ID you would like to remove: "))
+            check = enterValidString("Are you sure you want to remove employee? Y or N: ").lower()
             if check == "y":
                 for employee in employees_list:
                     if RemoveID == employee.getEmployeeId():

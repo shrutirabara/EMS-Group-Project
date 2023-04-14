@@ -15,7 +15,7 @@ def appendToEmpJSON(fileName, employee, dictList):
 
     dictList.append(emp_dict)
 
-    json_obj = json.dumps(dictList)
+    json_obj = json.dumps(dictList, indent = 4)
 
     with open(fileName, "w") as f:
         f.write(json_obj)
@@ -62,7 +62,7 @@ def appendToDptJSON(fileName, dpt, dpt_dictList):
 
     dpt_dictList.append(dpt_dict)
 
-    json_obj = json.dumps(dpt_dictList)
+    json_obj = json.dumps(dpt_dictList, indent = 4)
 
     with open(fileName, "w") as f:
         f.write(json_obj)
@@ -95,3 +95,6 @@ def loadJSONDptObjects(departments, dpt_dictList, file_name):
         # append department object to departments
         departments.append(recreateClassObj)
     
+def repopulateIdList(idList, empl_list):
+    for empl in empl_list:
+        idList.append(empl.getEmployeeId())

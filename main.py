@@ -1,7 +1,7 @@
 import os.path
 from employeeFunctions import listEmployee, addEmployee, updateEmployee, removeEmployee, listIds
 from departmentFunctions import navigateDepartmentMenu
-from jsonConversions import loadJSONEmpObjects, loadJSONDptObjects, appendToEmpJSON
+from jsonConversions import loadJSONEmpObjects, loadJSONDptObjects, appendToEmpJSON, repopulateIdList
 
 def main():
     print("\nWelcome to SOSS")
@@ -12,6 +12,9 @@ def main():
     dpt_list, dpt_dictList = [], []
     loadJSONEmpObjects(employees_list, emp_dictList, file_name1)
     loadJSONDptObjects(dpt_list, dpt_dictList, file_name2)
+    idList = []
+    repopulateIdList(idList, employees_list)
+    print(idList)
 
     ViewingMenu = True
     while ViewingMenu:
@@ -34,7 +37,7 @@ def main():
             case "1":
                 listEmployee(employees_list)
             case "2":
-                addEmployee(employees_list, dpt_list)
+                addEmployee(employees_list, dpt_list, idList)
             case "3":
                 updateEmployee(employees_list, dpt_list)
             case "4":
