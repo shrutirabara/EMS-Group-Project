@@ -1,5 +1,7 @@
+import time
 from Employee import Employee
 from errorHandling import enterValidNumber, enterValidString
+from departmentFunctions import selectDepartment
 
 
 def listEmployee(employees_list):
@@ -16,7 +18,7 @@ def listEmployee(employees_list):
               employee.getDateOfEmployment(), "| Salary:", employee.getSalary(), "| Department:", employee.getDepartment())
 
 
-def addEmployee(employees_list):
+def addEmployee(employees_list, departments):
     """
     a function that adds an employee object to appends it to the employees_list
 
@@ -32,17 +34,18 @@ def addEmployee(employees_list):
     employeeId = enterValidNumber("Enter the employee ID: ")
     dateOfEmployment = input("Enter the date of employement: ")
     salary = enterValidNumber("Enter employee salary: ")
-    department = enterValidString("Enter department: ")
+
+    dpt_obj = selectDepartment(departments)
 
     # Creating the Employee Object
     emp = Employee(firstName, lastName, employeeId,
-                   dateOfEmployment, salary, department)
+                   dateOfEmployment, salary, dpt_obj.getDptName())
 
     # Appending the Object to our Employees List
     employees_list.append(emp)
 
 
-def updateEmployee(employees_list):
+def updateEmployee(employees_list, departments):
     """
     a function that updates an employee object from the employees_list based on an attribute
 
@@ -53,13 +56,20 @@ def updateEmployee(employees_list):
     """
     id = enterValidNumber("\nEnter an ID to update: ")
 
+    idFound = False
     for emp_obj in employees_list:
         if emp_obj.getEmployeeId() == id:
             print(
                 f"\nID Match! Employee Found: {emp_obj.getFirstName()} {emp_obj.getLastName()}\n")
             emp = emp_obj
+            idFound = True
         else:
             pass
+
+    if not idFound:
+        print("\nNo Match! Returning to previous menu\n")
+        time.sleep(1)
+        return
 
     updatingData = True
     while updatingData:
@@ -97,7 +107,8 @@ def updateEmployee(employees_list):
                 emp.setSalary(enterValidNumber("\nNew Salary: "))
             case "6":
                 print(emp.getDepartment())
-                emp.setDepartment(enterValidString("\nNew Department: "))
+                dpt_obj = selectDepartment(departments)
+                emp.setDepartment(dpt_obj.getDptName())
             case "7":
                 updatingData = False
 

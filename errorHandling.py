@@ -34,7 +34,6 @@ def enterValidNumber(message):
     """
     a function that asks an user for a valid string that is numeric only,
     will handle errors and keep prompting until valid
-    ...
 
     Parameters
     ----------

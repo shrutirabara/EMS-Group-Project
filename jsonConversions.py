@@ -1,22 +1,23 @@
 import json
 from Employee import Employee
+from Department import Department
 
 
-def appendToJSON(fileName, employee, dictList):
+def appendToEmpJSON(fileName, employee, dictList):
     """
     a function that appends each attributes of an employee to an empty dictionary. The dictionary is then added to 
     the JSON file using a json object
-    ...
 
     Parameters
     ----------
+    file_name : str
+        a JSON file name
     emp_list : str
         an empty list of Employee objects, which we will repopulate
     emp_dictList : str
-        a list of dictionaries, which we will load our JSON file array into
-    file_name : str
-        a JSON file name 
+        a list of dictionaries, which we will load our JSON file array into  
     """
+
     emp_dict = {
         "first name": employee.getFirstName(),
         "last name": employee.getLastName(),
@@ -34,22 +35,22 @@ def appendToJSON(fileName, employee, dictList):
         f.write(json_obj)
 
 
-def loadJSONObjects(empl_list, emp_dictList, file_name):
+def loadJSONEmpObjects(empl_list, emp_dictList, file_name):
     """
     a function that opens a JSON file and loads it into a list, populating a list with dictionaries
     each dictionary is a representation of a Employee Class Object
     we repopulate employees_list by recreating class objects in memory and appending to the list
-    ...
 
     Parameters
     ----------
-    emp_list : str
-        an empty list of Employee objects, which we will repopulate
-    emp_dictList : str
+    departments : list
+        a populated list of Employee objects
+    emp_dictList : list
         a list of dictionaries, which we will load our JSON file array into
     file_name : str
         a JSON file name 
     """
+
     with open(file_name, "r") as f:
         emp_dictList = json.load(f)
 
@@ -57,9 +58,54 @@ def loadJSONObjects(empl_list, emp_dictList, file_name):
         recreateClassObj = Employee(
             emp["first name"],
             emp["last name"],
-            emp["id"], emp["doe"],
+            emp["id"],
+            emp["doe"],
             emp["salary"],
             emp["department"]
         )
         # append employee object to empl_list
         empl_list.append(recreateClassObj)
+
+
+def appendToDptJSON(fileName, dpt, dpt_dictList):
+    dpt_dict = {
+        "name": dpt.getDptName(),
+        "budget": dpt.getDptBudget(),
+        "phone": dpt.getDptNumber()
+    }
+
+    dpt_dictList.append(dpt_dict)
+
+    json_obj = json.dumps(dpt_dictList)
+
+    with open(fileName, "w") as f:
+        f.write(json_obj)
+
+def loadJSONDptObjects(departments, dpt_dictList, file_name):
+    """
+    a function that opens a Department JSON file and loads it into a list, populating a list with dictionaries
+    each dictionary is a representation of a Department Class Object
+    we repopulate dpt_list by recreating class objects in memory and appending to the list
+
+    Parameters
+    ----------
+    departments : list
+        a populated list of Department objects
+    emp_dictList : list
+        a list of dictionaries, which we will load our JSON file array into
+    file_name : str
+        a Department JSON file name
+    """
+
+    with open(file_name, "r") as f:
+        dpt_dictList = json.load(f)
+
+    for dpt in dpt_dictList:
+        recreateClassObj = Department(
+            dpt["name"],
+            dpt["budget"],
+            dpt["phone"]
+        )
+        # append department object to departments
+        departments.append(recreateClassObj)
+    

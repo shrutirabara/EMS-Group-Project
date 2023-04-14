@@ -1,7 +1,6 @@
 class Employee:
     """
     A class used to represent an Employee
-    ...
 
     Private Attributes
     ----------
