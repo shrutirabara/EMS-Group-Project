@@ -3,6 +3,7 @@ from employeeFunctions import listEmployee, addEmployee, updateEmployee, removeE
 from departmentFunctions import navigateDepartmentMenu
 from jsonConversions import loadJSONEmpObjects, loadJSONDptObjects, appendToEmpJSON
 
+
 def main():
     print("\nWelcome to SOSS")
 
@@ -45,8 +46,6 @@ def main():
                 navigateDepartmentMenu(dpt_list, dpt_dictList)
             case "7":
                 ViewingMenu = False
-
-
 
     file_name = "employee_data.json"
     if not os.path.isfile(file_name):
