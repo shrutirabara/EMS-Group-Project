@@ -1,24 +1,29 @@
-import os.path
+import os.path, time
 from Department import Department
 from errorHandling import enterValidNumber, enterValidString
-from jsonConversions import loadJSONDptObjects, appendToDptJSON
+from jsonConversions import appendToDptJSON
 
-def listDepartment(departments):
+def listDepartments(departments):
     count = 1
+    print("")
     for dpt in departments:
         print(f"{count}. Name: {dpt.getDptName()} | Budget: {dpt.getDptBudget()} | Phone: {dpt.getDptNumber()}")
         count += 1
+    print("")
+    
+
 
 def addDepartments(departments):
     name = enterValidString("Enter Department Name: ")
     budget = enterValidNumber(f"Enter {name} Budget: ")
-    phone = enterValidNumber(f"Enter {name} Phone#: ")
+    phone = enterValidNumber(f"Enter {name} Phone #: ")
 
     # Creating the Department Object
     dpt_obj = Department(name, budget, phone)
 
     # Appending the Object to our Employees List
     departments.append(dpt_obj)
+
 
 def selectDepartment(departments):
     """
@@ -35,11 +40,12 @@ def selectDepartment(departments):
     department : object
         a Department object    
     """
-    listDepartment(departments)
+    listDepartments(departments)
     while True:
         dpt_num = int(enterValidNumber("Select Department #: ")) - 1
         if 0 <= dpt_num < len(departments):
             return departments[dpt_num]
+
 
 def updateDepartments(departments):
     """
@@ -52,13 +58,20 @@ def updateDepartments(departments):
     """
     name = enterValidString("\nEnter a Deparment Name to update: ")
 
+    nameFound = False
     for dpt_obj in departments:
         if dpt_obj.getDptName() == name:
             print(
                 f"\nName Match! Department Found: {dpt_obj.getDptName()}\n")
             dpt = dpt_obj
+            nameFound = True
         else:
             pass
+
+    if not nameFound:
+        print("\nNo Match! Returning to previous menu\n")
+        time.sleep(1)
+        return
 
     updatingData = True
     while updatingData:
@@ -88,13 +101,33 @@ def updateDepartments(departments):
             case "4":
                 updatingData = False
 
+
 def removeDepartments(departments):
-    pass
+    listDepartments(departments)
+    RemoveName = enterValidString("Please enter the Department you would like to remove: ")
+
+    nameFound = False
+    for dept_obj in departments:
+        if RemoveName == dept_obj.getDptName():
+            print("Name Match! Department Found")
+            dpt = dept_obj
+            nameFound = True
+        
+    if nameFound:
+        check = enterValidString(f"Are you sure you want to remove {RemoveName}? Y or N: ").lower()
+        if check == 'y':
+            departments.remove(dpt)
+        else:
+            print("\nAborting! Returning to previous menu\n")
+            time.sleep(1)
+    else:
+        print("\nNot Found! Returning to previous menu")
+        time.sleep(1)
+
 
 
 def navigateDepartmentMenu(departments, dpt_dictList):
     file_name = "departments_data.json"
-    # loadJSONDptObjects(departments, dpt_dictList, file_name)
 
     ViewingDepartments = True
     while ViewingDepartments:
@@ -113,7 +146,7 @@ def navigateDepartmentMenu(departments, dpt_dictList):
 
         match choice:
             case "1":
-                listDepartment(departments)
+                listDepartments(departments)
             case "2":
                 addDepartments(departments)
             case "3":
@@ -123,10 +156,11 @@ def navigateDepartmentMenu(departments, dpt_dictList):
             case "5":
                 ViewingDepartments = False
 
-
+    # Creates a JSON file if none exist
     if not os.path.isfile(file_name):
         with open(file_name, "w") as f:
             pass
 
+    # Serialization and Overriding our Departments JSON
     for dpt in departments:
         appendToDptJSON(file_name, dpt, dpt_dictList)

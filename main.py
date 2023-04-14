@@ -1,16 +1,17 @@
 import os.path
 from employeeFunctions import listEmployee, addEmployee, updateEmployee, removeEmployee, listIds
 from departmentFunctions import navigateDepartmentMenu
-from jsonConversions import loadJSONEmpObjects, loadJSONDptObjects, appendToJSON
+from jsonConversions import loadJSONEmpObjects, loadJSONDptObjects, appendToEmpJSON
 
 def main():
     print("\nWelcome to SOSS")
 
-    file_name1 = "employee_data.json"
-    file_name2 = "departments_data.json"
-
-    employees_list, emp_dictList = loadJSONEmpObjects(file_name1)
-    dpt_list, dpt_dictList = loadJSONDptObjects(file_name2)
+    # Loading in our JSON Data
+    file_name1, file_name2 = "employee_data.json", "departments_data.json"
+    employees_list, emp_dictList = [], []
+    dpt_list, dpt_dictList = [], []
+    loadJSONEmpObjects(employees_list, emp_dictList, file_name1)
+    loadJSONDptObjects(dpt_list, dpt_dictList, file_name2)
 
     ViewingMenu = True
     while ViewingMenu:
@@ -53,7 +54,7 @@ def main():
             pass
 
     for emp in employees_list:
-        appendToJSON(file_name1, emp, emp_dictList)
+        appendToEmpJSON(file_name1, emp, emp_dictList)
 
 
 if __name__ == "__main__":

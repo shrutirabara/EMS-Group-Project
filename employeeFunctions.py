@@ -1,3 +1,4 @@
+import time
 from Employee import Employee
 from errorHandling import enterValidNumber, enterValidString
 from departmentFunctions import selectDepartment
@@ -53,13 +54,20 @@ def updateEmployee(employees_list, departments):
     """
     id = enterValidNumber("\nEnter an ID to update: ")
 
+    idFound = False
     for emp_obj in employees_list:
         if emp_obj.getEmployeeId() == id:
             print(
                 f"\nID Match! Employee Found: {emp_obj.getFirstName()} {emp_obj.getLastName()}\n")
             emp = emp_obj
+            idFound = True
         else:
             pass
+
+    if not idFound:
+        print("\nNo Match! Returning to previous menu\n")
+        time.sleep(1)
+        return
 
     updatingData = True
     while updatingData:
